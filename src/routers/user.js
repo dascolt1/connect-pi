@@ -44,8 +44,8 @@ router.post('/users/login', async (req, res) => {
 		const user = await User.findByCredentials(req.body.email, req.body.password)
 		const token = await user.generateAuthToken()
 
-        res.send({ user, token })
-        res.redirect()
+        //res.send({ user, token })
+        res.redirect('/users')
 	}catch(e) {
 		res.status(400).send()
 	}
@@ -77,7 +77,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 	}
 })
 
-//gets users
+//gets user profile
 router.get('/users/me', auth, async (req, res) => {
     //res.send(req.user)
     let {name, email, field, city} = req.user
@@ -88,7 +88,8 @@ router.get('/users/me', auth, async (req, res) => {
     })
 })
 
-router.get('/users', async (req, res) => {
+//gets all brothers in db
+router.get('/users', auth, async (req, res) => {
     const users = await User.find()
     res.render('roster', {
         users,
