@@ -1,0 +1,26 @@
+{
+  "name": "connect-pi",
+  "version": "1.0.0",
+  "description": "Fraternity website to find alumni and active brothers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js -e hbs,js,css"
+  },
+  "author": "Tommy DAscoli",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.16",
+    "multer": "^1.4.1",
+    "sharp": "^0.25.4",
+    "validator": "^10.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
