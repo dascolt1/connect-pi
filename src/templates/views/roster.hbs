@@ -5,19 +5,25 @@
 
 	<link rel="stylesheet" type="text/css" href="/css/roster-styles.css">
 </head>
-<body onload="test()">
-
+<body>
+    {{>header}}
 	<div class="main-content">
+        <h2>{{title}}</h2>
+        <form class="brother-search">
+            <input class="search" type="text" placeholder="Search for brother...">
+            <button class="search-button">Search</button>
+        </form>
+        
 		{{#each users}}
-            <div>
-                {{name}}
-                {{email}}
+            <div class="card">
+                <h4 id="name">{{name}}</h4>
+                <p id="email">{{email}}</p>
             </div>
         {{/each}}
 	</div>
 		
-<script type="text/javascript">
-    window.onload()
+<script type="text/javascript" src="/js/roster.js">
+    //window.onload()
 </script>
 </body>
 </html>

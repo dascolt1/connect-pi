@@ -22,6 +22,14 @@ app.use(express.json())
 //user routes found in ./routers/user
 app.use(userRouter)
 
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+app.get('/register', (req, res) => {
+    res.render('register')
+})
+
 //not found middleware
 app.use((req, res, next) => {
     const err = new Error(`URL ${req.originalUrl} not found`);

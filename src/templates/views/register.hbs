@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/register-styles.css">
+
+</head>
+<body>
+	<div class="heading">
+		<div>
+			<h2>Theta Delta Alumni Network</h2>
+		</div>
+		<div>
+			<img class="flag" src="/assets/sigpiflag.png">
+		</div>
+		<div class="loginbtn">
+			<button class="button" id="button">Sign Up</button>
+		</div>
+	</div>
+	<!-- modal -->
+	<div class="bg-modal">
+		<div class="modal-content">
+			<div class="close">
+				+
+			</div>
+			<form action="">
+				<img class="logo" src="/assets/sigpi.png">
+                <input type="text" name="email" placeholder="brother1897@gmail.com">
+				<input type="text" name="first-name" placeholder="Tommy">
+                <input type="text" name="last-name" placeholder="DAscoli">
+                <input type="text" name="field" placeholder="Accounting">
+                <input type="text" name="residence" placeholder="New York City">
+				<input type="password" name="password" placeholder="Password">
+				<div class="btndiv">
+					<button class="button">Sign Up</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+    <script type="text/javascript">
+        //opens and closes modal
+        document.getElementById('button').addEventListener('click', function() {
+            document.querySelector('.bg-modal').style.display = "flex";
+        });
+
+        document.querySelector('.close').addEventListener('click', function(){
+            document.querySelector('.bg-modal').style.display = "none";
+        });
+    </script>
+</body>
+<script type="text/javascript" src="/js/login.js">
+</html>
