@@ -16,8 +16,10 @@
         
 		{{#each users}}
             <div class="card">
-                <h4 id="name">{{name}}</h4>
+                <img src="/brothers/{{id}}/avatar">
+                <h4 id="name">{{firstName}} {{lastName}}</h4>
                 <p id="email">{{email}}</p>
+                <p>{{field}}</p>
             </div>
         {{/each}}
 	</div>

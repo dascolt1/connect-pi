@@ -4,11 +4,14 @@ const User = require('../models/user')
 const auth = require('../middleware/auth')
 const multer = require('multer')
 const sharp = require('sharp')
+const passport = require('passport')
+const validator = require('validator')
+const { ensureAuthenticated } = require('../middleware/auth')
 
 //multer options config
 const upload = multer({
 	limits: {
-		fileSize: 1000000
+		fileSize: 100000000
 	},
 	fileFilter(req, file, cb){
 		if(!file.originalname.match(/\.(png|jpg|jpeg)$/)){
@@ -25,78 +28,69 @@ router.get('/test', (req, res) => {
 
 //post request to USERS
 //signs up and creates user
-router.post('/brothers', async (req, res) => {
+router.post('/register', async (req, res) => {
+	const { password, email } = req.body
+	
 	const user = new User(req.body)
-    res.redirect('/brothers')
 	try {
-		const token = await user.generateAuthToken()
-        await user.save()
-		res.status(201).send({ user, token })
+		await user.save()
+		//req.flash('success_msg', 'You are registered!')
+		res.redirect('/login')
 	} catch (e) {
-		res.status(400).send(e)
+		const { errors } = e
+		let userFacingErrors = []
+
+		//handles mongo sanitation and passes to front end
+		for(var key in errors) {
+			if(errors.hasOwnProperty(key)){
+				userFacingErrors.push({error: errors[key].message})
+			}
+		}
+
+		res.render('register', {
+			userFacingErrors
+		})
+		//res.status(400).send(errors.hasOwnProperty('email'))
 	}
 
 })
 
 //logs in user
-router.post('/brothers/login', async (req, res) => {
-	try{
-		const user = await User.findByCredentials(req.body.email, req.body.password)
-		const token = await user.generateAuthToken()
-
-        //res.send({ user, token })
-        res.redirect('/brothers')
-	}catch(e) {
-		res.status(400).send()
-	}
+router.post('/brothers/login', async (req, res, next) => {
+        passport.authenticate('local', {
+			successRedirect:'/',
+			failureRedirect: '/login',
+			failureFlash: true
+		})(req, res, next)
 })
 
 //logs out a user by erasing token
-router.post('/brothers/logout', auth, async (req, res) => {
-	try {
-		req.user.tokens = req.user.tokens.filter((token) => {
-			return token.token !== req.token
-		})
-		await req.user.save()
-
-		res.send()
-	}catch (e) {
-		res.status(500).send()
-	}
-})
-
-//logs out user on all devices
-router.post('/brothers/logoutAll', auth, async (req, res) => {
-	try{
-		req.user.tokens = []
-
-		await req.user.save()
-		res.send()
-	}catch(e) {
-		res.status(500).send()
-	}
+router.get('/brothers/logout', async (req, res) => {
+	req.logout()
+	res.redirect('/login')
 })
 
 //gets user profile
-router.get('/brothers/me', auth, async (req, res) => {
-    //res.send(req.user)
-    let {name, email, field, city, id} = req.user
+router.get('/brothers/me', ensureAuthenticated, async (req, res) => {
+    res.send(req.user)
+    let {name, email, field, city, _id} = req.user
     res.render('profile', {
         name,
         field,
         city,
-        id
+        _id
     })
 })
 
 //gets all brothers in db
-router.get('/brothers', auth, async (req, res) => {
+router.get('/brothers', ensureAuthenticated, async (req, res) => {
     if(req.query.name) {
         const name = req.query.name
-        const users = await User.find({ "name": name })
+		const users = await User.find({ "lastName": name })
         res.render('roster', {
             users,
-            title: "Brothers of Sigma Pi"
+			title: "Brothers of Sigma Pi",
+			id: users._id
         })
     }else {
         const users = await User.find()
@@ -111,7 +105,7 @@ router.get('/brothers', auth, async (req, res) => {
 })
 
 //updates users
-router.patch('/brothers/me', auth, async (req, res) => {
+router.patch('/brothers/me', async (req, res) => {
 	const updates = Object.keys(req.body)
 	const allowedUpdates = ['name', 'email', 'password', 'field', 'city']
 	const isValidOperaion = updates.every((update) =>  allowedUpdates.includes(update))
@@ -130,7 +124,7 @@ router.patch('/brothers/me', auth, async (req, res) => {
 })
 
 //deletes user
-router.delete('/brothers/me', auth, async (req, res) => {
+router.delete('/brothers/me', async (req, res) => {
 	try {
 		await req.user.remove()
 		res.send(req.user);
@@ -140,24 +134,23 @@ router.delete('/brothers/me', auth, async (req, res) => {
 })
 
 //uploads profile image 
-router.post('/brothers/me/avatar', auth, upload.single('avatar'), async (req, res) => {
-
-	const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
+router.post('/brothers/me/avatar', ensureAuthenticated, upload.single('avatar'), async (req, res) => {
+	const buffer = await sharp(req.file.buffer).resize({ width: 300, height: 350 }).png().toBuffer()
 	req.user.avatar = buffer
 	await req.user.save()
-	res.send()
+	//res.send(buffer)
 }, (error, req, res, next) => {
 	res.status(400).send({ error: error.message })
 })
 
 //deletes prof pic
-router.delete('/brothers/me/avatar', auth, async (req, res) => {
+router.delete('/brothers/me/avatar', async (req, res) => {
 	req.user.avatar = undefined
 	await req.user.save()
 	res.send()
 })
 
-router.get('/users/:id/avatar', async (req, res) => {
+router.get('/brothers/:id/avatar', async (req, res) => {
 	try{
 		const user = await User.findById(req.params.id)
 

@@ -31,12 +31,13 @@ body {
 }
 
 .modal-content {
-    width: 500px;
-    height: 300px;
+    width: 30vw;
+    height: 65vh;
     background-color: white;
     border-radius: 4px;
     position: relative;
     text-align: center;
+    overflow: auto;
 }
 
 input {
@@ -52,6 +53,7 @@ input {
     cursor: pointer;
     font-size: 20px;
     border-radius: 7px;
+    margin-top: .5em;
 }
 
 .btndiv {
@@ -72,7 +74,6 @@ input {
     height: 25%;
 }
 
-
 .loginbtn {
     padding-top: 2em;
     margin-bottom: -50px;
@@ -86,4 +87,13 @@ h2 {
 .flag {
     width: 250px;
     height: 150px;
+}
+
+.redirect {
+    text-decoration: none;
+}
+
+.error {
+     color: red;
+     padding: 0;
 }

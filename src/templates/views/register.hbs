@@ -15,7 +15,7 @@
 			<img class="flag" src="/assets/sigpiflag.png">
 		</div>
 		<div class="loginbtn">
-			<button class="button" id="button">Sign Up</button>
+			<button class="button" id="button">Register</button>
 		</div>
 	</div>
 	<!-- modal -->
@@ -24,16 +24,21 @@
 			<div class="close">
 				+
 			</div>
-			<form action="">
+				
+			<form action="/register" method="POST">
 				<img class="logo" src="/assets/sigpi.png">
+				{{#each userFacingErrors}}	
+					<p class="error">{{error}}</p>
+				{{/each}}
                 <input type="text" name="email" placeholder="brother1897@gmail.com">
-				<input type="text" name="first-name" placeholder="Tommy">
-                <input type="text" name="last-name" placeholder="DAscoli">
+				<input type="text" name="firstName" placeholder="Tommy">
+                <input type="text" name="lastName" placeholder="DAscoli">
                 <input type="text" name="field" placeholder="Accounting">
-                <input type="text" name="residence" placeholder="New York City">
+                <input type="text" name="city" placeholder="New York City">
 				<input type="password" name="password" placeholder="Password">
+                <p>Already have an account?<a class="redirect" href="/login"> Sign In</a></p>
 				<div class="btndiv">
-					<button class="button">Sign Up</button>
+					<input type="submit" class="button" value="Register">
 				</div>
 			</form>
 		</div>

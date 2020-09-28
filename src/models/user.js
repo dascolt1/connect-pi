@@ -1,19 +1,23 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 
 const userSchema = new mongoose.Schema({
-	name: {
+	firstName: {
 		type: String,
-		required: true,
+		required: [true, 'First Name cannot be left blank'],
+		trim: true
+	},
+	lastName: {
+		type: String,
+		required: [true, 'Last Name cannot be left blank'],
 		trim: true
 	},
 	email: {
 		type: String,
-		required: true,
+		required: [true, 'Email cannot be blank'],
 		trim: true,
-		unique: true,
+		unique: [true, 'Email already taken'],
 		lowercase: true,
 		validate(value) {
 			if(!validator.isEmail(value)){
@@ -23,14 +27,9 @@ const userSchema = new mongoose.Schema({
 	},
 	password: {
 		type: String,
-		required: true,
+		required: [true, 'Password cannot be blank'],
 		trim: true,
-		minlength: 7,
-		validate(value){
-			if(value.toLowerCase().includes('password')) {
-				throw new Error('Password too easy')
-			}
-		}
+		minlength: [7, 'Password must ne atleast 7 characters'],
 	},
 	field: {
 		type: String,
@@ -40,28 +39,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-	tokens: [{
-		token:{
-			type: String,
-			required: true
-		}
-	}],
 	avatar: {
 		type: Buffer
 	}
 }, {
 	timestamps: true
 })
-
-userSchema.methods.generateAuthToken = async function() {
-	const user = this;
-	const token = jwt.sign({ _id: user._id.toString() }, '1694pennington')
-
-	user.tokens = user.tokens.concat({ token })
-	await user.save()
-
-	return token
-}
 
 userSchema.statics.findByCredentials = async (email, password) => {
 	const user = await User.findOne({ email })
