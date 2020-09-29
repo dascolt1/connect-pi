@@ -12,8 +12,9 @@ body {
 
 .card {
     padding: 2em;
-    border: 5px solid purple;
+    border-bottom: 1px solid purple;
     margin: 2em;
+    background-color: whitesmoke;
 }
 
 .brother-search {
@@ -23,4 +24,17 @@ body {
 
 .search {
     width: 100%;
+}
+
+#email {
+    font-size: 1em !important;
+    text-decoration: none;
+}
+
+.email {
+    font-size: 1em;
+}
+
+.card-custom {
+    border-radius: 1%;
 }

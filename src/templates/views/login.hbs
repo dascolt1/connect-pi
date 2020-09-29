@@ -2,9 +2,7 @@
 <html>
 <head>
 	<title>Login</title>
-
 	<link rel="stylesheet" type="text/css" href="/css/login-styles.css">
-
 </head>
 <body>
 	<div class="heading">
@@ -24,11 +22,11 @@
 			<div class="close">
 				+
 			</div>
-			{{#if messages.error}}
-				<p>{{messages.error}}</p>
-			{{/if}}
 			<form action="/brothers/login" method="POST">
 				<img class="logo" src="/assets/sigpi.png">
+				{{#if messages.error}}
+					<p>{{messages.error}}</p>
+				{{/if}}
 				<input type="text" id="email" name="email" placeholder="Email">
 				<input type="password" id="password" name="password" placeholder="Password">
                 <p>Don't have an account?<a class="redirect" href="/register"> Register</a></p>

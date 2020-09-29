@@ -17,7 +17,6 @@ const upload = multer({
 		if(!file.originalname.match(/\.(png|jpg|jpeg)$/)){
 			cb(new Error('PLease upload an image'))
 		}
-
 		cb(undefined, true)
 	}
 })
@@ -39,7 +38,7 @@ router.post('/register', async (req, res) => {
 	} catch (e) {
 		const { errors } = e
 		let userFacingErrors = []
-
+		console.log(e)
 		//handles mongo sanitation and passes to front end
 		for(var key in errors) {
 			if(errors.hasOwnProperty(key)){
@@ -47,10 +46,10 @@ router.post('/register', async (req, res) => {
 			}
 		}
 
+		//if(errors.)
 		res.render('register', {
 			userFacingErrors
 		})
-		//res.status(400).send(errors.hasOwnProperty('email'))
 	}
 
 })
@@ -83,7 +82,7 @@ router.get('/brothers/me', ensureAuthenticated, async (req, res) => {
 })
 
 //gets all brothers in db
-router.get('/brothers', ensureAuthenticated, async (req, res) => {
+router.get('/brothers', async (req, res) => {
     if(req.query.name) {
         const name = req.query.name
 		const users = await User.find({ "lastName": name })
@@ -135,7 +134,7 @@ router.delete('/brothers/me', async (req, res) => {
 
 //uploads profile image 
 router.post('/brothers/me/avatar', ensureAuthenticated, upload.single('avatar'), async (req, res) => {
-	const buffer = await sharp(req.file.buffer).resize({ width: 300, height: 350 }).png().toBuffer()
+	const buffer = await sharp(req.file.buffer).resize({ width: 150, height: 200 }).png().toBuffer()
 	req.user.avatar = buffer
 	await req.user.save()
 	//res.send(buffer)

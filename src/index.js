@@ -39,11 +39,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
-app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('succes_msg');
-    res.locals.errors_msg = req.flash('error_msg');
-    next();
-})
+// app.use((req, res, next) => {
+//     res.locals.errors = userFacingErrors;
+//     res.locals.errors_msg = req.flash('error_msg');
+//     next();
+// })
 
 //user routes found in ./routers/user
 app.use(userRouter)
@@ -61,6 +61,10 @@ app.get('/register', (req, res) => {
 app.get('/', ensureAuthenticated, (req, res) => {
     //console.log(req.user)
     res.render('dashboard')
+})
+
+app.get('/profile', (req, res) => {
+    res.render('profile')
 })
 
 //not found middleware

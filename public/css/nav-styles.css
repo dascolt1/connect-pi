@@ -1,7 +1,5 @@
-.nav-bar {
-    display: flex;
-    justify-content: flex-end;
-    background-color: #C920B9;
+.navbar-custo {
+    background-color: #C920B9 !important;
 }
 
 a {
