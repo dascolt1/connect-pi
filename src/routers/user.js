@@ -89,7 +89,7 @@ router.get('/brothers/me', ensureAuthenticated, async (req, res) => {
 })
 
 //gets all brothers in db
-router.get('/brothers', async (req, res) => {
+router.get('/brothers', ensureAuthenticated, async (req, res) => {
     if(req.query.name) {
 		const name = req.query.name
 		const regex = new RegExp(fuzzySearch(name), 'gi');

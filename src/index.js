@@ -9,6 +9,7 @@ const passport = require('passport')
 var bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const { ensureAuthenticated } = require('./middleware/auth')
+require('dotenv').config()
 require('./middleware/passport')(passport)
 
 const app = express()
@@ -25,12 +26,13 @@ hbs.registerPartials(partialsPath)
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
  
 // parse application/json
 app.use(bodyParser.json())
 
 app.use(session({
-    secret: '1694pennington',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
   }))
@@ -38,12 +40,6 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
-
-// app.use((req, res, next) => {
-//     res.locals.errors = userFacingErrors;
-//     res.locals.errors_msg = req.flash('error_msg');
-//     next();
-// })
 
 //user routes found in ./routers/user
 app.use(userRouter)
@@ -68,10 +64,10 @@ app.get('/profile', (req, res) => {
 })
 
 //not found middleware
-app.use((req, res, next) => {
-    const err = new Error(`URL ${req.originalUrl} not found`);
-    res.status(404).send({error: `URL ${req.originalUrl} not found`});
-    next(err);
+app.get("*", (req, res, next) => {
+    res.render('404', {
+        url: req.url
+    })
 });
 
 //Starts server

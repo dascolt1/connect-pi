@@ -1,6 +1,5 @@
 const searchForm = document.querySelector('form')
 const search = document.querySelector('input')
-const 
 let skip = 0;
 let limit = 1;
 
