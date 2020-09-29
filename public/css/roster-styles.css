@@ -12,14 +12,18 @@ body {
 
 .card {
     padding: 2em;
-    border-bottom: 1px solid purple;
     margin: 2em;
     background-color: whitesmoke;
+}
+
+.form-control {
+    margin-right: 1em;
 }
 
 .brother-search {
     max-width: 50vw;
     display: flex;
+    padding-bottom: 1em;
 }
 
 .search {
@@ -37,4 +41,8 @@ body {
 
 .card-custom {
     border-radius: 1%;
+}
+
+.title {
+    padding-bottom: 1em;
 }

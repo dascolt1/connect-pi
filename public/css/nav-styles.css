@@ -8,3 +8,8 @@ a {
     font-size: 1.5em;
     color: #FFF000;
 }
+
+.logo {
+    width: 100px;
+    height: 100px;
+}

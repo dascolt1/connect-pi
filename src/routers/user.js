@@ -7,6 +7,7 @@ const sharp = require('sharp')
 const passport = require('passport')
 const validator = require('validator')
 const { ensureAuthenticated } = require('../middleware/auth')
+const { fuzzySearch, capitalNames } = require('../helpers/fuzzy')
 
 //multer options config
 const upload = multer({
@@ -28,8 +29,14 @@ router.get('/test', (req, res) => {
 //post request to USERS
 //signs up and creates user
 router.post('/register', async (req, res) => {
-	const { password, email } = req.body
-	
+	//makes sure users first and last name is capitalized
+	//so that brothers are sorted accordingly
+	let { firstName, lastName } = req.body
+	firstName = capitalNames(firstName)
+	lastName = capitalNames(lastName)
+	req.body.firstName = firstName
+	req.body.lastName = lastName
+
 	const user = new User(req.body)
 	try {
 		await user.save()
@@ -84,18 +91,30 @@ router.get('/brothers/me', ensureAuthenticated, async (req, res) => {
 //gets all brothers in db
 router.get('/brothers', async (req, res) => {
     if(req.query.name) {
-        const name = req.query.name
-		const users = await User.find({ "lastName": name })
+		const name = req.query.name
+		const regex = new RegExp(fuzzySearch(name), 'gi');
+		const users = await User.find({ "lastName": regex })
         res.render('roster', {
             users,
 			title: "Brothers of Sigma Pi",
 			id: users._id
         })
     }else {
-        const users = await User.find()
-        //const id = req.user.id
+		let { skip, limit  } = req.query
+		skip = Number(skip) || 0;
+		limit = Number(limit) || 10;
+		limit = limit > 25 ? 25 : limit;
+		skip = skip < 0 ? 0 : skip;
+		limit = limit < 0 ? 10 : limit;
+
+		const total = await User.find().countDocuments()
+        const users = await User.find().sort({ "lastName": 1 }).limit(limit).skip(skip)
+		const remaining = total - (skip + limit) > 0
+		
         res.render('roster', {
-            users,
+			users,
+			total,
+			remaining,
             title: "Brothers of Sigma Pi"
         })
         //console.log(id)

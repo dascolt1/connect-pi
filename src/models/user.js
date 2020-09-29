@@ -42,8 +42,6 @@ const userSchema = new mongoose.Schema({
 	avatar: {
 		type: Buffer
 	}
-}, {
-	timestamps: true
 })
 
 userSchema.statics.findByCredentials = async (email, password) => {
@@ -67,8 +65,7 @@ userSchema.methods.toJSON = function() {
 	const userObj = user.toObject()
 
 	delete userObj.password
-	delete userObj.tokens
-	delete userObj.avatar
+	//delete userObj.avatar
 
 	return userObj;
 }

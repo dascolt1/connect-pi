@@ -13,7 +13,7 @@
 <body>
     {{>header}}
 	<div class="main-content">
-        <h2>{{title}}</h2>
+        <h2 class="title">{{title}}</h2>
         <form class="brother-search">
             <input class="form-control" type="text" placeholder="Search for brother by last name">
             <button class="btn btn-primary">Search</button>
@@ -21,19 +21,22 @@
         {{#if users}}
 		    {{#each users}}
                 <div class="card card-custom">
-                    <img class="card-img-top" src="/brothers/{{id}}/avatar">
+                    {{#if avatar}}
+                        <img class="card-img-top" src="/brothers/{{id}}/avatar">
+                    {{/if}}
                     <div class="card-body">
                         <h3 class="card-title" id="name">{{firstName}} {{lastName}}</h3>
                         <h5 class="card-subtitle text-muted">{{field}}</h5>
-                        <p class="card-text" id="email">Contact at:<a class="email" href="{{email}}">{{email}}</a></p>
+                        <p class="card-text" id="email"><a class="email" href="mailto:{{email}}">{{email}}</a></p>
+                        <p>{{city}}</p>
                     </div>
                 </div>
             {{/each}}
         {{else}}
-        <h3>Sorry, no brothers with that last name were found</h3>
+        <h5>Sorry, no brothers with that last name were found.</h5>
         {{/if}}
         
-        
+    </div>
 		
 <script type="text/javascript" src="/js/roster.js">
 </script>

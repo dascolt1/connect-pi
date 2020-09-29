@@ -1,7 +1,8 @@
 const searchForm = document.querySelector('form')
 const search = document.querySelector('input')
-const name = document.querySelector("#name")
-const email = document.querySelector("#email")
+const 
+let skip = 0;
+let limit = 1;
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
