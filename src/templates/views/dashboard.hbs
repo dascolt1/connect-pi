@@ -1,19 +1,69 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>{{title}}</title>
 
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
+	<link rel="stylesheet" type="text/css" href="/css/dash-styles.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-  <link rel="stylesheet" href="css/dash-styles">
-
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-
 <body>
     {{>header}}
-  <script src="js/scripts.js"></script>
+	<div class="main-content">
+        <div class="executive">
+            <h2 class="title">Current Executive Board</h2>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="panel">
+                                <img class="logo" src="/assets/sigpi.png">
+                                <h3 class="panel-heading">Luke Austin</h3>
+                                <h5 class="card-subtitle text-muted">Herald</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="panel">
+                                <img class="logo" src="/assets/sigpi.png">
+                                <h3 class="panel-heading">Jack McFarlane</h3>
+                                <h5 class="card-subtitle text-muted">Fourth Counselor</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="panel">
+                                <img class="logo" src="/assets/sigpi.png">
+                                <h3 class="panel-heading">Brendan Downes</h3>
+                                <h5 class="card-subtitle text-muted">Second Counselor</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="panel">
+                                <img class="logo" src="/assets/sigpi.png">
+                                <h3 class="panel-heading">Jack Fitzgerald</h3>
+                                <h5 class="card-subtitle text-muted">Sage</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="panel">
+                                <img class="logo" src="/assets/sigpi.png">
+                                <h3 class="panel-heading">Michael Cannici</h3>
+                                <h5 class="card-subtitle text-muted">First Counselor</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="panel">
+                                <img class="logo" src="/assets/sigpi.png">
+                                <h3 class="panel-heading">Jack Roma</h3>
+                                <h5 class="card-subtitle text-muted">Executive Assistant</h5>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+		
+<script type="text/javascript" src="/js/roster.js">
+</script>
 </body>
 </html>

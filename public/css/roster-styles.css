@@ -5,7 +5,7 @@ body {
 
 .main-content {
     margin: 0 auto;
-    max-width: 50vw;
+    max-width: 100vw;
     text-align: center;
     padding: 3em 0 5em 0;
 }
@@ -18,12 +18,14 @@ body {
 
 .form-control {
     margin-right: 1em;
+    font-size: .5em;
 }
 
 .brother-search {
-    max-width: 50vw;
+    max-width: 100vw;
     display: flex;
     padding-bottom: 1em;
+    padding: 1em;
 }
 
 .search {
@@ -46,3 +48,54 @@ body {
 .title {
     padding-bottom: 1em;
 }
+
+@media only screen and (min-width: 768px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .main-content {
+        margin: 0 auto;
+        max-width: 50vw;
+        text-align: center;
+        padding: 3em 0 5em 0;
+    }
+    
+    .card {
+        padding: 2em;
+        margin: 2em;
+        background-color: whitesmoke;
+    }
+    
+    .form-control {
+        margin-right: 1em;
+    }
+    
+    .brother-search {
+        max-width: 50vw;
+        display: flex;
+        padding-bottom: 1em;
+    }
+    
+    .search {
+        width: 100%;
+    }
+    
+    #email {
+        font-size: 1em !important;
+        text-decoration: none;
+    }
+    
+    .email {
+        font-size: 1em;
+    }
+    
+    .card-custom {
+        border-radius: 1%;
+    }
+    
+    .title {
+        padding-bottom: 1em;
+    }
+  }

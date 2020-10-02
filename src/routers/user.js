@@ -45,7 +45,6 @@ router.post('/register', async (req, res) => {
 	} catch (e) {
 		const { errors } = e
 		let userFacingErrors = []
-		console.log(e)
 		//handles mongo sanitation and passes to front end
 		for(var key in errors) {
 			if(errors.hasOwnProperty(key)){
