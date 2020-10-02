@@ -54,11 +54,11 @@ app.get('/register', (req, res) => {
     res.render('register')
 })
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     res.render('dashboard')
 })
 
-app.get('/profile', (req, res) => {
+app.get('/profile', ensureAuthenticated,(req, res) => {
     res.render('profile')
 })
 
