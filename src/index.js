@@ -46,7 +46,7 @@ app.use(userRouter)
 
 app.get('/login', (req, res) => {
     res.render('login', {
-        error: req.flash('error')
+        message: req.flash('error')
     })
 })
 
@@ -54,13 +54,16 @@ app.get('/register', (req, res) => {
     res.render('register')
 })
 
-app.get('/', (req, res) => {
+app.get('/', ensureAuthenticated, (req, res) => {
     res.render('dashboard')
 })
 
 
 app.get('/profile', ensureAuthenticated,(req, res) => {
-    res.render('profile')
+    let user = req.user
+    res.render('profile', {
+        user
+    })
 })
 
 //not found middleware

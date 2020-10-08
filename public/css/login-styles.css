@@ -1,189 +1,187 @@
-
 body {
-    background-image: url(/assets/loginbg.jpg) ;
-    background-size: 2000px 1000px;   
-    background-repeat: no-repeat; 
+	color: #fff;
+	background: #63738a;
+	font-family: 'Roboto', sans-serif;
 }
-
-.heading {
+.form-control {
+	height: 40px;
+	box-shadow: none;
+	color: #969fa4;
+}
+.form-control:focus {
+	border-color: #5cb85c;
+}
+.form-control, .btn {        
+	border-radius: 3px;
+}
+.signin-form {
+	width: 80vw;
+	margin: 0 auto;
+	padding: 10em 0;
+  	font-size: 15px;
+}
+.signin-form h2 {
+	color: #636363;
+	margin: 0 0 15px;
+	position: relative;
+	text-align: center;
+}
+.signin-form h2:before, .signin-form h2:after {
+	content: "";
+	height: 2px;
+	width: 30%;
+	background: #d4d4d4;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}	
+.signin-form h2:before {
+	left: 0;
+}
+.signin-form h2:after {
+	right: 0;
+}
+.signin-form .hint-text {
+	color: #999;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.signin-form form {
+	color: #999;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	background: #f2f3f7;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.signin-form .form-group {
+	margin-bottom: 20px;
+}
+.signin-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+.signin-form .btn {        
+	font-size: 16px;
+	font-weight: bold;		
+	min-width: 140px;
+	outline: none !important;
+}
+.signin-form .row div:first-child {
+	padding-right: 10px;
+}
+.signin-form .row div:last-child {
+	padding-left: 10px;
+}    	
+.signin-form a {
+	color: #fff;
+	text-decoration: none;
+}
+.signin-form a:hover {
+	text-decoration: none;
+}
+.signin-form form a {
+	color: #5cb85c;
+	text-decoration: none;
+}	
+.signin-form form a:hover {
+	text-decoration: underline;
+}
+.error {
     text-align: center;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid purple;
-    margin-top: 10em;
-    padding-bottom: 5em;
-    padding-top: 5em;
-    margin-left: 15em;
-    margin-right: 15em;
-    background-color: white;
-    border-radius: 10px;
-    opacity: 0.75;
-}
-
-.bg-modal {
-    width: 50%;
-    height: 50%;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-.modal-content {
-    width: 40vw;
-    height: 60vh;
-    background-color: white;
-    border-radius: 4px;
-    position: relative;
-    text-align: center;
-}
-
-input {
-    width: 50%;
-    display: block;
-    margin: 1em auto;
-    font-size: 15px;
-}
-
-.button {
-    background-color: purple;
-    color: yellow;
-    cursor: pointer;
-    font-size: 20px;
-    border-radius: 7px;
-}
-
-.btndiv {
-    text-align: center;
-}
-
-.close {
-    position: absolute;
-    top: 0;
-    right: 14px;
-    font-size: 25px;
-    transform: rotate(45deg);
-    cursor: pointer;
-}
-
-.logo {
-    width: 25%;
-    height: 25%;
-}
-
-.loginbtn {
-    padding-top: 2em;
-    margin-bottom: -50px;
-}
-
-h2 {
-    margin-top: -2em;
-    color: #CC9900;
-}
-
-.flag {
-    width: 250px;
-    height: 150px;
-}
-
-.redirect {
-    text-decoration: none;
+    color: red;
 }
 
 @media only screen and (min-width: 768px) {
     body {
-        background-image: url(/assets/loginbg.jpg);
-        background-size: 2000px 1000px;    
-    }
-    
-    .heading {
-        text-align: center;
+        color: #fff;
+        background: #63738a;
         font-family: 'Roboto', sans-serif;
-        border: 1px solid purple;
-        margin-top: 10em;
-        padding-bottom: 5em;
-        padding-top: 5em;
-        margin-left: 15em;
-        margin-right: 15em;
-        background-color: white;
-        border-radius: 10px;
-        opacity: 0.75;
     }
-    
-    .bg-modal {
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        display: none;
+    .form-control {
+        height: 40px;
+        box-shadow: none;
+        color: #969fa4;
     }
-    
-    .modal-content {
-        width: 40vw;
-        height: 60vh;
-        background-color: white;
-        border-radius: 4px;
+    .form-control:focus {
+        border-color: #5cb85c;
+    }
+    .form-control, .btn {        
+        border-radius: 3px;
+    }
+    .signin-form {
+        width: 450px;
+        margin: 0 auto;
+        padding: 8em 0;
+        font-size: 15px;
+    }
+    .signin-form h2 {
+        color: #636363;
+        margin: 0 0 15px;
         position: relative;
         text-align: center;
     }
-    
-    input {
-        width: 50%;
-        display: block;
-        margin: 1em auto;
-        font-size: 15px;
+    .signin-form h2:before, .signin-form h2:after {
+        content: "";
+        height: 2px;
+        width: 30%;
+        background: #d4d4d4;
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+    }	
+    .signin-form h2:before {
+        left: 0;
     }
-    
-    .button {
-        background-color: purple;
-        color: yellow;
-        cursor: pointer;
-        font-size: 20px;
-        border-radius: 7px;
+    .signin-form h2:after {
+        right: 0;
     }
-    
-    .btndiv {
+    .signin-form .hint-text {
+        color: #999;
+        margin-bottom: 30px;
         text-align: center;
     }
-    
-    .close {
-        position: absolute;
-        top: 0;
-        right: 14px;
-        font-size: 25px;
-        transform: rotate(45deg);
-        cursor: pointer;
+    .signin-form form {
+        color: #999;
+        border-radius: 3px;
+        margin-bottom: 15px;
+        background: #f2f3f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
     }
-    
-    .logo {
-        width: 25%;
-        height: 25%;
+    .signin-form .form-group {
+        margin-bottom: 20px;
     }
-    
-    .loginbtn {
-        padding-top: 2em;
-        margin-bottom: -50px;
+    .signin-form input[type="checkbox"] {
+        margin-top: 3px;
     }
-    
-    h2 {
-        margin-top: -2em;
-        color: #CC9900;
+    .signin-form .btn {        
+        font-size: 16px;
+        font-weight: bold;		
+        min-width: 140px;
+        outline: none !important;
     }
-    
-    .flag {
-        width: 250px;
-        height: 150px;
+    .signin-form .row div:first-child {
+        padding-right: 10px;
     }
-    
-    .redirect {
+    .signin-form .row div:last-child {
+        padding-left: 10px;
+    }    	
+    .signin-form a {
+        color: #fff;
         text-decoration: none;
     }
-  }
+    .signin-form a:hover {
+        text-decoration: underline;
+    }
+    .signin-form form a {
+        color: #5cb85c;
+        text-decoration: none;
+    }	
+    .signin-form form a:hover {
+        text-decoration: underline;
+    }
+    .error {
+        text-align: center;
+        color: red;
+    }
+}

@@ -40,7 +40,6 @@ router.post('/register', async (req, res) => {
 	const user = new User(req.body)
 	try {
 		await user.save()
-		//req.flash('success_msg', 'You are registered!')
 		res.redirect('/login')
 	} catch (e) {
 		const { errors } = e
@@ -51,13 +50,10 @@ router.post('/register', async (req, res) => {
 				userFacingErrors.push({error: errors[key].message})
 			}
 		}
-
-		//if(errors.)
 		res.render('register', {
 			userFacingErrors
 		})
 	}
-
 })
 
 //logs in user
@@ -78,7 +74,7 @@ router.get('/brothers/logout', async (req, res) => {
 //gets user profile
 router.get('/brothers/me', ensureAuthenticated, async (req, res) => {
     res.send(req.user)
-    let {name, email, field, city, _id} = req.user
+    let { name, email, field, city, _id } = req.user
     res.render('profile', {
         name,
         field,
@@ -116,17 +112,15 @@ router.get('/brothers', ensureAuthenticated, async (req, res) => {
 			remaining,
             title: "Brothers of Sigma Pi"
         })
-        //console.log(id)
-    }
-    
+    }  
 })
 
 //updates users
 router.patch('/brothers/me', async (req, res) => {
 	const updates = Object.keys(req.body)
-	const allowedUpdates = ['name', 'email', 'password', 'field', 'city']
+	console.log(updates)
+	const allowedUpdates = ['firstName', 'lastName', 'email', 'password', 'field', 'city']
 	const isValidOperaion = updates.every((update) =>  allowedUpdates.includes(update))
-
 	if(!isValidOperaion) {
 		return res.status(400).send({ error: "Invalid updates" })
 	}
@@ -134,7 +128,7 @@ router.patch('/brothers/me', async (req, res) => {
 	try {
 		updates.forEach((update) => req.user[update] = req.body[update])
 		await req.user.save()
-		res.send(req.user)
+		res.send(200).redirect('profile')
 	} catch(e) {
 		res.status(400).send(e)
 	}
@@ -155,7 +149,7 @@ router.post('/brothers/me/avatar', ensureAuthenticated, upload.single('avatar'),
 	const buffer = await sharp(req.file.buffer).resize({ width: 150, height: 200 }).png().toBuffer()
 	req.user.avatar = buffer
 	await req.user.save()
-	//res.send(buffer)
+	res.status(200).redirect('/profile')
 }, (error, req, res, next) => {
 	res.status(400).send({ error: error.message })
 })
@@ -174,7 +168,6 @@ router.get('/brothers/:id/avatar', async (req, res) => {
 		if(!user || !user.avatar){
 			throw new Error()
 		}
-
 		//sets header to image content type
 		//then sends back avatar img
 		//can use this url in image tag to serve image
