@@ -1,7 +1,53 @@
+<!DOCTYPE html>
 <html>
-  {{>header}}
-<form action="/brothers/me/avatar" method="POST" enctype="multipart/form-data">
-  <input type="file" id="myFile" name="avatar">
-  <input type="submit">
-</form>
+<head>
+	<title>{{title}}</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/profile-styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    {{>header}}
+	<div class="main-content">
+      <div>
+        <img class="image" src="/brothers/{{user.id}}/avatar">
+      </div>
+      <form class="center" action="/brothers/me/avatar" method="POST" enctype="multipart/form-data">
+        <input class="file" type="file" id="myFile" name="avatar">
+        <button type="submit" class="btn btn-success">Change picture</button>
+      </form>
+
+      <div class="info-update">
+        <form action="/brothers/me?_method=PUT" method="post">
+            {{#if success}}
+              <h4 class="">{{success}}</h4>
+            {{/if}}
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" value="{{user.email}}">
+              </div>
+              <div class="form-group">
+                  <input type="password" class="form-control" name="password" value="{{user.password}}">
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" name="field" value="{{user.field}}">
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" name="city" value="{{user.city}}">
+              </div>         
+              <div class="form-group">
+                  <button type="submit" class="btn btn-success btn-lg btn-block">Update</button>
+              </div>
+          </div>
+        </form>
+      </div>
+
+  </div>
+</body>
 </html>

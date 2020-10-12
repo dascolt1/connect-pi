@@ -116,22 +116,25 @@ router.get('/brothers', ensureAuthenticated, async (req, res) => {
 })
 
 //updates users
-router.patch('/brothers/me', async (req, res) => {
+router.put('/brothers/me', ensureAuthenticated, async (req, res) => {
 	const updates = Object.keys(req.body)
-	console.log(updates)
-	const allowedUpdates = ['firstName', 'lastName', 'email', 'password', 'field', 'city']
+	const allowedUpdates = ['lastName', 'email', 'password', 'field', 'city']
 	const isValidOperaion = updates.every((update) =>  allowedUpdates.includes(update))
 	if(!isValidOperaion) {
-		return res.status(400).send({ error: "Invalid updates" })
+		return res.render('profile', { error: "Invalid updates" })
 	}
-
+	
 	try {
 		updates.forEach((update) => req.user[update] = req.body[update])
-		await req.user.save()
-		res.send(200).redirect('profile')
+		let user = req.user
+		await user.save()
+		res.render('profile', {
+			success: "Profile updated successfully!",
+			user
+		})
 	} catch(e) {
 		res.status(400).send(e)
-	}
+	}	
 })
 
 //deletes user

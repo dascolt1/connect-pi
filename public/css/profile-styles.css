@@ -1,0 +1,51 @@
+.main-content {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.file{
+    padding-left: -1em;
+}
+
+.info-update {
+    margin-top: 5em;
+    max-width: 70vw;
+    text-align: center;
+    margin-left: 5em;
+}
+
+@media only screen and (min-width: 768px) {
+    .main-content {
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .image {
+        margin-bottom: 2em;
+        margin-top: 2em;
+    }
+    
+    .info-update {
+        margin-top: 5em;
+        max-width: 70vw;
+        text-align: center;
+        margin-left: 12em;
+    }    
+}

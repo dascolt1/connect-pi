@@ -11,6 +11,9 @@ const flash = require('connect-flash')
 const { ensureAuthenticated } = require('./middleware/auth')
 require('dotenv').config()
 require('./middleware/passport')(passport)
+var methodOverride = require('method-override')
+
+
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -27,6 +30,8 @@ hbs.registerPartials(partialsPath)
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+// override with POST having ?_method=PUT
+app.use(methodOverride('_method'))
  
 // parse application/json
 app.use(bodyParser.json())
@@ -59,7 +64,7 @@ app.get('/', ensureAuthenticated, (req, res) => {
 })
 
 
-app.get('/profile', ensureAuthenticated,(req, res) => {
+app.get('/profile', (req, res) => {
     let user = req.user
     res.render('profile', {
         user
