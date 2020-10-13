@@ -17,17 +17,19 @@
     {{>header}}
 	<div class="main-content">
       <div>
-        <img class="image" src="/brothers/{{user.id}}/avatar">
+        {{#if user.avatar}}
+          <img class="image" src="/brothers/{{user.id}}/avatar">
+        {{/if}}
       </div>
       <form class="center" action="/brothers/me/avatar" method="POST" enctype="multipart/form-data">
         <input class="file" type="file" id="myFile" name="avatar">
-        <button type="submit" class="btn btn-success">Change picture</button>
+        <button type="submit" class="btn btn-primary">Change/Add picture</button>
       </form>
 
       <div class="info-update">
         <form action="/brothers/me?_method=PUT" method="post">
             {{#if success}}
-              <h4 class="">{{success}}</h4>
+              <h4 class="msg">{{success}}</h4>
             {{/if}}
               <div class="form-group">
                 <input type="email" class="form-control" name="email" value="{{user.email}}">
