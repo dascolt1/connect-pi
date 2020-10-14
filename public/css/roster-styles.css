@@ -95,6 +95,7 @@ body {
     
     .card-custom {
         border-radius: 1%;
+        box-shadow: 2px 3px 8px #210;
     }
     
     .title {
