@@ -13,8 +13,6 @@ require('dotenv').config()
 require('./middleware/passport')(passport)
 var methodOverride = require('method-override')
 
-
-
 const app = express()
 const port = process.env.PORT || 3000
 
