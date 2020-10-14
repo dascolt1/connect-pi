@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const connection = 'mongodb+srv://dascolt1:Spartanj1@cluster0.khxst.mongodb.net/connect-pi?retryWrites=true&w=majority'
+require('dotenv').config()
+const connection = process.env.CONNECT_MONGOOSE
 mongoose.connect(connection, {
 	useNewUrlParser: true,
     useCreateIndex: true,

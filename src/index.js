@@ -64,7 +64,7 @@ app.get('/', ensureAuthenticated, (req, res) => {
 })
 
 
-app.get('/profile', (req, res) => {
+app.get('/profile', ensureAuthenticated, (req, res) => {
     let user = req.user
     res.render('profile', {
         user
