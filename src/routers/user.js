@@ -118,7 +118,7 @@ router.get('/brothers', ensureAuthenticated, async (req, res) => {
 //updates users
 router.put('/brothers/me', ensureAuthenticated, async (req, res) => {
 	const updates = Object.keys(req.body)
-	const allowedUpdates = ['lastName', 'email', 'password', 'field', 'city']
+	const allowedUpdates = ['firstName', 'lastName', 'email', 'password', 'field', 'city']
 	const isValidOperaion = updates.every((update) =>  allowedUpdates.includes(update))
 	if(!isValidOperaion) {
 		return res.render('profile', { error: "Invalid updates" })
