@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-
-mongoose.connect('mongodb://127.0.0.1:27017/connect-pi-api', {
+const connection = 'mongodb+srv://dascolt1:Spartanj1@cluster0.khxst.mongodb.net/connect-pi?retryWrites=true&w=majority'
+mongoose.connect(connection, {
 	useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
