@@ -11,6 +11,11 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.img {
+    width: 100px;
+    height: 110px;
+}
+
 .card {
     padding: 2em;
     margin: 2em;
@@ -45,6 +50,7 @@ body {
 .card-custom {
     border-radius: 1%;
     box-shadow: 2px 3px 8px #210;
+    max-width: 80%;
 }
 
 .title {
@@ -97,9 +103,12 @@ body {
     .card-custom {
         border-radius: 1%;
         box-shadow: 2px 3px 8px #210;
+        max-width: 90%;
     }
     
     .title {
         padding-bottom: 1em;
     }
+
+    
   }

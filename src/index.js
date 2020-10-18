@@ -57,7 +57,7 @@ app.get('/register', (req, res) => {
     res.render('register')
 })
 
-app.get('/', ensureAuthenticated, (req, res) => {
+app.get('/', (req, res) => {
     res.render('dashboard')
 })
 

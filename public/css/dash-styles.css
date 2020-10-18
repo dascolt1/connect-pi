@@ -1,11 +1,6 @@
-body {
-    margin: 0;
-    padding: 0;
-}
-
 .main-content {
     margin: 0 auto;
-    max-width: 100;
+    max-width: 100vw;
     text-align: center;
     padding: 3em 0 5em 0;
     font-family: 'Montserrat', sans-serif;
@@ -17,17 +12,29 @@ body {
     font-size: 2em;
     margin-top: 1em;
     margin-bottom: -3em;
+    max-width: 100vw;
 }
 
-.about h2 {
-    line-height: 1em;
-    font-size: 2em;
-    color: #ebeb12;
-    padding-bottom: 1em;
+.row {
+    max-width: 100vw;
 }
 
-.about p {
-    color: #f0ec13;
+.quote {
+    padding-bottom: 10em;
+    line-height: 2em;
+    padding: 1em;
+    color: #7F2CCB;
+    font-family: 'Sansita Swashed', cursive;
+}
+
+.don-quote {
+    padding-top: 5em;
+    padding-bottom: 10em;
+    max-width: 100vw;
+}
+
+.quote-author {
+    color: #7F2CCB;
 }
 
 
@@ -45,6 +52,14 @@ body {
         padding: 1.5em;
     }
 
+    .don-quote {
+        padding-bottom: 7em;
+        line-height: 1.5em;
+        font-size: 1.6em;
+        padding-top: 5em;
+        max-width: 100vw;
+    }
+
     .title {
         padding-bottom: 1em;
     }
@@ -58,23 +73,4 @@ body {
         margin-top: 4em;
     }
 
-    .about {
-        background-color: #7F2CCB;
-        padding: 3em;
-        font-size: 2em;
-        margin-top: 7em;
-        margin-bottom: -5em;
-    }
-
-    .about h2 {
-        line-height: 1em;
-        font-size: 2em;
-        color: #ebeb12;
-        padding-bottom: .5em;
-    }
-
-    .about p {
-        color: #f0ec13;
-        line-height: 1.5em;
-    }
   }
