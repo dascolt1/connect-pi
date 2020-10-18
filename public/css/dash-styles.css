@@ -24,17 +24,19 @@
     line-height: 2em;
     padding: 1em;
     color: #7F2CCB;
+    font-size: 1.5em;
     font-family: 'Sansita Swashed', cursive;
 }
 
 .don-quote {
-    padding-top: 5em;
+    padding-top: 2em;
     padding-bottom: 10em;
     max-width: 100vw;
 }
 
 .quote-author {
     color: #7F2CCB;
+    font-size: 1.3em;
 }
 
 
