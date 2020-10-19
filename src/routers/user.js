@@ -103,7 +103,7 @@ router.get('/brothers', ensureAuthenticated, async (req, res) => {
 		limit = limit < 0 ? 10 : limit;
 
 		const total = await User.find().countDocuments()
-        const users = await User.find().sort({ "lastName": 1 }).limit(limit).skip(skip)
+        const users = await User.find().sort({ "lastName": 1 })
 		const remaining = total - (skip + limit) > 0
 		
         res.render('roster', {
