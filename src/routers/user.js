@@ -95,14 +95,18 @@ router.get('/brothers', ensureAuthenticated, async (req, res) => {
 			id: users._id
         })
     }else {
-		let { skip, limit  } = req.query
-		skip = Number(skip) || 0;
-		limit = Number(limit) || 10;
-		limit = limit > 25 ? 25 : limit;
-		skip = skip < 0 ? 0 : skip;
-		limit = limit < 0 ? 10 : limit;
 
-		const total = await User.find().countDocuments()
+		/*
+		*TODO add pagination
+		**/
+		// let { skip, limit  } = req.query
+		// skip = Number(skip) || 0;
+		// limit = Number(limit) || 10;
+		// limit = limit > 25 ? 25 : limit;
+		// skip = skip < 0 ? 0 : skip;
+		// limit = limit < 0 ? 10 : limit;
+
+		//const total = await User.find().countDocuments()
         const users = await User.find().sort({ "lastName": 1 })
 		const remaining = total - (skip + limit) > 0
 		
